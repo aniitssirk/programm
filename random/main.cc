@@ -8,6 +8,26 @@
 #include <random>
 #include <iostream>
 #include <chrono>
+#include <sstream>
+
+
+	int read_int(const char * question)
+	{
+		int result;
+		std::string inp;
+		re: std::cout << question;
+		std::getline(std::cin, inp);
+		{
+			std::stringstream inps {inp};
+			inps >> result;
+			if (inps.fail()){
+				std::cout << "Некорректный ввод!" << std::endl;
+				goto re;
+
+			}
+		}
+		return result;
+	}
 
 int main(){
 	using clk = std::chrono::system_clock;
@@ -16,7 +36,7 @@ int main(){
 	std::uniform_int_distribution<> d {15,25};
 	unsigned stone_count = d(rnd);
 	//Сообщаем юзверю о кол-ве камней
-	do {std::cout << "В куче " << stone_count << " камней" << std::endl;
+	{std::cout << "В куче " << stone_count << " камней" << std::endl;
 	std::cout << "Каждый ход вы можете взять из кучи 1, 2 или 3 камня. Не более и не менее." << std::endl;
 	std::cout << std::endl;
 	//Спрашиваем, сколько тянет юзверь
@@ -24,7 +44,7 @@ int main(){
 	//Уменьшаем кучу
 	//Если 0 камней, то юзверь проиграл, иначе ход компьютера
 	//Если 1 камень, то проиграл компьютер
-	} while(true);
+	}
 
 
 
