@@ -32,6 +32,22 @@
 		return result;
 	}
 
+
+
+	int read_int_in_range(const char * question, int min, int max)
+	{
+		int result;
+		for(;;){
+			result = read_int(question);
+			if(result >=min and result <=max)
+				return  result;
+			std::cout << "Число должно быть в интервале от "<< min
+					<< " до "<< max << std::endl;
+
+		}
+	}
+
+
 int main(){
 	using clk = std::chrono::system_clock;
 	//std::random_device rd;
@@ -45,6 +61,7 @@ int main(){
 	//Спрашиваем, сколько тянет юзверь
 	std::cout << "Сколько камней Вы берете?" << std::endl;
 	int x = read_int("Введите число: ");
+	int x = read_int_in_range("?", 1, std::min(3U, stones_cout));
 	//Уменьшаем кучу
 	//Если 0 камней, то юзверь проиграл, иначе ход компьютера
 	//Если 1 камень, то проиграл компьютер
